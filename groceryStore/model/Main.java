@@ -98,6 +98,7 @@ public class Main {
                     String choiceProduct;
                     System.out.println("Product---------------");
                     System.out.println("Product::::::::::::::");
+                    System.out.println("new fix");
                     System.out.println("1.Create  2.Update  3.Delete   4.View ");
                     System.out.println("Enter your choice product: ");
                     choiceProduct = Obj.nextLine();
