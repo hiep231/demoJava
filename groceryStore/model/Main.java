@@ -97,6 +97,7 @@ public class Main {
                     Scanner Obj = new Scanner(System.in);
                     String choiceProduct;
                     System.out.println("Product---------------");
+                    System.out.println("Product::::::::::::::");
                     System.out.println("1.Create  2.Update  3.Delete   4.View ");
                     System.out.println("Enter your choice product: ");
                     choiceProduct = Obj.nextLine();
