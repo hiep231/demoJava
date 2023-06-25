@@ -374,6 +374,7 @@ public class Main {
     }
     public static List<Bill> viewBill(List<Bill> listBill){
         return listBill;
+        
     }
 
 
