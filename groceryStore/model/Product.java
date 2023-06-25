@@ -15,6 +15,15 @@ public class Product {
     public Product() {
     }
 
+    public Product(String id, String name, Double price, LocalDate expiration, String image, String categoryId) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.expiration = expiration;
+        this.image = image;
+        this.categoryId = categoryId;
+    }
+
     public String getId() {
         return id;
     }

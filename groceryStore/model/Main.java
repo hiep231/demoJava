@@ -13,161 +13,191 @@ public class Main {
         List<Product> listProduct = new ArrayList<>();
         List<Category> listCategory = new ArrayList<>();
         List<Bill> listBill = new ArrayList<>();
+        List<OrderItem> listOrderItems = new ArrayList<>();
+        Category c1 = new Category("CAT1H2","GAO","TOT");
+        Category c2 = new Category("CAT9H3","LAO","TOT");
+        listCategory.add(c1);
+        listCategory.add(c2);
 
-        String prefix = "PRO";
-        char digit1 = generateRandomDigit();
-        char UpperLetter = generateRandomUppercaseLetter();
-        char digit2 = generateRandomDigit();
-        String id_product = prefix + digit1 + UpperLetter + digit2;
-
-        String prefix_category = "CAT";
-        String id_category = prefix_category + digit1 + UpperLetter + digit2;
-
-        String prefix_bill = "BIL";
-        String id_bill = prefix_bill + digit1 + UpperLetter + digit2;
-
-        String prefix_order = "ORD";
-        String id_order = prefix_bill + digit1 + UpperLetter + digit2;
-
-        Category gao = new Category();
-        gao.setId(id_category);
-        gao.setName("ST15");
-        gao.setQuality("8");
-        listCategory.add(gao);
-        while (true) {
-            Scanner myObj = new Scanner(System.in);
-            String choiceCategory;
-            System.out.println("Category");
-            System.out.println("1.Create  2.Update  3.Delete   4.View ");
-            System.out.println("Enter your choice category: ");
-            choiceCategory = myObj.nextLine();
-            if (choiceCategory.equals("1")) {
-                Category Lua = createCategory(listCategory, id_category, "Lua Vang", "Trung binh");
-                System.out.println("Create done!!!");
-            } else if (choiceCategory.equals("2")) {
-                Category updateGao = updateCategory(listCategory, gao, id_category, "ST01", "Kha");
-                System.out.println("Update done!!!");
-            } else if (choiceCategory.equals("3")) {
-                Category deleteGao = deleteCategory(listCategory, gao);
-                System.out.println("Delete done!!!");
-            } else if (choiceCategory.equals("4")) {
-                List<Category> viewCategory = viewCategory(listCategory);
-                System.out.println(viewCategory);
-            }else {
-                break;
-            }
-        }
-
-        Product com = new Product();
-        com.setId(id_product);
-        com.setName("suon");
-        com.setPrice(35.000);
-        com.setImage("https://w3school.com");
-        com.setExpiration(LocalDate.now());
-        com.setCategoryId(gao.getId());
-        System.out.println(com.toString());
+        Product p1 = new Product("PRO2K4","ST14",15.00,LocalDate.now(),"http://school.com","CAT1H2");
+        Product p2 = new Product("PRO1J6","J2B",25.00,LocalDate.now(),"http://school.com","CAT9H3");
+        listProduct.add(p1);
+        listProduct.add(p2);
 
         while (true) {
             Scanner myObj = new Scanner(System.in);
-            String choiceProduct;
-            System.out.println("Product");
-            System.out.println("1.Create  2.Update  3.Delete   4.View ");
-            System.out.println("Enter your choice product: ");
-            choiceProduct = myObj.nextLine();
-            if (choiceProduct.equals("1")) {
-                Product chao = createProduct(listProduct, id_product,"BI",70.00,LocalDate.now(),"https://elearning.vanlanguni.edu.vn/",gao.getId());
-                System.out.println("Create done!!!");
-            } else if (choiceProduct.equals("2")) {
-                Product updateCom = updateProduct(listProduct,com,id_product,"suon cong",40.000,LocalDate.now(),"https://facebook.com",gao.getId());
-                System.out.println("Update done!!!");
-            } else if (choiceProduct.equals("3")) {
-                Product deleteProduct = deleteProduct(listProduct,com);
-                System.out.println("Delete done!!!");
-            } else if (choiceProduct.equals("4")) {
-                List<Product> viewProduct = viewProduct(listProduct);
-                System.out.println(viewProduct);
-            }else {
-                break;
+            String choiceModel;
+            System.out.println("Menu");
+            System.out.println("1.Category  2.Product  3.OrderItems   4.Bill ");
+            System.out.println("Enter your choice menu: ");
+            choiceModel = myObj.nextLine();
+
+            if (choiceModel.equals("1")) {
+
+                while (true) {
+                    String prefix_category = "CAT";
+                    char digit1 = generateRandomDigit();
+                    char UpperLetter = generateRandomUppercaseLetter();
+                    char digit2 = generateRandomDigit();
+                    String id_category = prefix_category + digit1 + UpperLetter + digit2;
+
+                    Scanner Obj = new Scanner(System.in);
+                    String choiceCategory;
+                    System.out.println("Category");
+                    System.out.println("1.Create  2.Update  3.Delete   4.View ");
+                    System.out.println("Enter your choice category: ");
+                    choiceCategory =  Obj.nextLine();
+                    if (choiceCategory.equals("1")) {
+                        Category category = createCategory(listCategory, id_category, "Lua Vang", "Trung binh");
+                        System.out.println("Create done!!!");
+                    } else if (choiceCategory.equals("2")) {
+                        Scanner myObj2 = new Scanner(System.in);
+                        System.out.println("Enter the category ID to update: ");
+                        String categoryIdToUpdate = myObj2.nextLine();
+                        Category categoryToUpdate = findCategoryById(listCategory, categoryIdToUpdate);
+                        if (categoryToUpdate != null) {
+                            System.out.println("Enter the updated category name: ");
+                            String updatedName = myObj2.nextLine();
+                            Category update = updateCategory(listCategory, updatedName, "com", "Tot");
+                            System.out.println("Update done!!!");
+                        } else {
+                            System.out.println("Category not found!");
+                        }
+                    } else if (choiceCategory.equals("3")) {
+                        Scanner myObj3 = new Scanner(System.in);
+                        System.out.println("Enter the category ID to update: ");
+                        String categoryIdToDelete = myObj3.nextLine();
+                        Category categoryToDelete = findCategoryById(listCategory, categoryIdToDelete);
+
+                        if (categoryToDelete != null) {
+                            System.out.println("Enter the delete category name: ");
+                            String deleteName = myObj3.nextLine();
+                            Category delete = deleteCategory(listCategory, deleteName);
+                            System.out.println("Delete done!!!");
+                        } else {
+                            System.out.println("Category not found!");
+                        }
+                    } else if (choiceCategory.equals("4")) {
+                        System.out.println(viewCategory(listCategory));
+                    } else {
+                        break;
+                    }
+                }
             }
-        }
 
-//        OrderItem order = new OrderItem();
-//        order.setProductId(com.getId());
-//        order.setQuality("cao");
-//
-//        OrderItem order1 = new OrderItem();
-//        order1.setProductId(chao.getId());
-//        order1.setQuality("Thap");
-//
-//        OrderItem order2 = new OrderItem();
-//        order2.setProductId(chao.getId());
-//        order2.setQuality("Vua");
-
-////        delete Product
-//        Product deleteProduct = deleteProduct(listProduct,newProduct);
-////        view Product
-//        List<Product> viewProduct = viewProduct(listProduct);
-
-
-
-
-//
-
-//
 //        Product com = new Product();
 //        com.setId(id_product);
 //        com.setName("suon");
 //        com.setPrice(35.000);
 //        com.setImage("https://w3school.com");
-//        LocalDate Date = LocalDate.now();
-//        com.setExpiration(Date);
-//        com.setCategoryId(id_category);
+//        com.setExpiration(LocalDate.now());
+//        com.setCategoryId(gao.getId());
 //        System.out.println(com.toString());
-//
-//        Product chao = new Product();
-//        chao.setId(id_product);
-//        chao.setName("HANH");
-//        chao.setPrice(5.000);
-//        chao.setImage("https://school.com");
-//        chao.setExpiration(Date);
-//        chao.setCategoryId(id_category);
-//        System.out.println(chao.toString());
-//
-//
-//
-//        Category gao = new Category();
-//        gao.setId(id_category);
-//        gao.setName("ST15");
-//        gao.setQuality("8");
-////        System.out.println(gao.toString());
-//
-//        Category lua = new Category();
-//        lua.setId(id_category);
-//        lua.setName("ST15");
-//        lua.setQuality("8");
-////        System.out.println(lua.toString());
-//
-//        listCategory.add(gao);
-//        listCategory.add(lua);
-//
-//
-//
-//        OrderItem order = new OrderItem();
-//        order.setProductId(com.getId());
-//        order.setQuality("cao");
-//
-//        OrderItem order1 = new OrderItem();
-//        order1.setProductId(chao.getId());
-//        order1.setQuality("Thap");
-//
-//        OrderItem order2 = new OrderItem();
-//        order2.setProductId(chao.getId());
-//        order2.setQuality("Vua");
-//
-//
-//
-//
-//
+            if (choiceModel.equals("2")) {
+                while (true) {
+                    String prefix = "PRO";
+                    char digit1 = generateRandomDigit();
+                    char UpperLetter = generateRandomUppercaseLetter();
+                    char digit2 = generateRandomDigit();
+                    String id_product = prefix + digit1 + UpperLetter + digit2;
+
+                    Scanner Obj = new Scanner(System.in);
+                    String choiceProduct;
+                    System.out.println("Product");
+                    System.out.println("1.Create  2.Update  3.Delete   4.View ");
+                    System.out.println("Enter your choice product: ");
+                    choiceProduct = Obj.nextLine();
+                    if (choiceProduct.equals("1")) {
+                        Scanner myObj1 = new Scanner(System.in);
+                        String choiceCategoryId;
+                        System.out.println("Enter Category ID: ");
+                        choiceCategoryId = myObj1.nextLine();
+                        Category category = findCategoryById(listCategory, choiceCategoryId);
+
+                        Product chao = createProduct(listProduct, id_product, "BI", 70.00, "https://elearning.vanlanguni.edu.vn/", category.getId());
+                        System.out.println("Create done!!!");
+                    } else if (choiceProduct.equals("2")) {
+                        Scanner myObj2 = new Scanner(System.in);
+                        String choiceCategoryId;
+                        System.out.println("Enter Category ID: ");
+                        choiceCategoryId = myObj2.nextLine();
+                        Category category = findCategoryById(listCategory, choiceCategoryId);
+
+                        Scanner myObj1 = new Scanner(System.in);
+                        String productId;
+                        System.out.println("Enter Product ID: ");
+                        productId = myObj1.nextLine();
+
+                        Product updateCom = updateProduct(listProduct, productId, "suon cong", 40.000, "https://facebook.com", category.getId());
+                        System.out.println("Update done!!!");
+                    } else if (choiceProduct.equals("3")) {
+                        Scanner Obj3 = new Scanner(System.in);
+                        String choiceProductId;
+                        System.out.println("Enter Product ID: ");
+                        choiceProductId = Obj3.nextLine();
+                        Product deleteProduct = deleteProduct(listProduct, choiceProductId);
+                        System.out.println("Delete done!!!");
+                    } else if (choiceProduct.equals("4")) {
+                        System.out.println(viewProduct(listProduct));
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            if (choiceModel.equals("3")) {
+                while (true) {
+                    Scanner Obj = new Scanner(System.in);
+                    String choiceOrder;
+                    System.out.println("order");
+                    System.out.println("1.Create  2.View ");
+                    System.out.println("Enter your choice order: ");
+                    choiceOrder = Obj.nextLine();
+
+                    if (choiceOrder.equals("1")) {
+                        Scanner Obj1 = new Scanner(System.in);
+                        String id_product;
+                        System.out.println("Enter ID Product: ");
+                        id_product = Obj1.nextLine();
+                        OrderItem orderItem = createOrderItem(listProduct, listOrderItems, id_product, "Cao");
+                        System.out.println("Create orderItem done!!!");
+                    } else if (choiceOrder.equals("2")) {
+                        System.out.println(viewOderItem(listOrderItems));
+                    } else break;
+                }
+            }
+            if (choiceModel.equals("4")) {
+                while (true) {
+                    String prefix = "BIL";
+                    char digit1 = generateRandomDigit();
+                    char UpperLetter = generateRandomUppercaseLetter();
+                    char digit2 = generateRandomDigit();
+                    String id_bill = prefix + digit1 + UpperLetter + digit2;
+
+                    Scanner obj = new Scanner(System.in);
+                    String choiceBill;
+                    System.out.println("Bill");
+                    System.out.println("1.Create  2.View ");
+                    System.out.println("Enter your choice bill: ");
+                    choiceBill = obj.nextLine();
+                    if (choiceBill.equals("1")) {
+
+                        Bill newBill = createBill(listBill, listProduct, id_bill, "Linh", listOrderItems);
+                        System.out.println("Create bill done!!!");
+                    } else if (choiceBill.equals("2")) {
+                        System.out.println(viewBill(listBill));
+                    } else break;
+                }
+            }
+            if (choiceModel.equals("out")) {
+                break;
+            };
+        }
+
+
+
+
+
 //        Bill bill = new Bill();
 //        bill.setId(id_bill);
 //        bill.setCustomerName("Hiep");
@@ -175,9 +205,7 @@ public class Main {
 //        String timeNow = getTime();
 //        bill.setTime(timeNow);
 //
-//        List<OrderItem> orderItems = new ArrayList<>();
-//        orderItems.add(order);
-//        orderItems.add(order1);
+
 //
 //        bill.setOrderItems(orderItems);
 //        bill.setTotalAmount(55.0);
@@ -190,32 +218,7 @@ public class Main {
 //        }
 //
 ////        System.out.println(bill.toString());
-//
-//
-//
-//////        CreateCategory
-////        Category newCategory = createCategory(listCategory,"CAT1J1","ST22","7");
-////        System.out.println(listCategory);
-////
-//////        update category
-////        Category updateCategory = updateCategory(listCategory,gao,"CAT8S0","ST16","9");
-//////        delete category
-////        Category deleteCategory = deleteCategory(listCategory,newCategory");
-////        System.out.println(listCategory);
-//////        view category
-////        List<Category> viewCategory = viewCategory(listCategory);
-////        System.out.println(viewCategory);
-//
-//////        create product
-////        Product newProduct = createProduct(listProduct,"PRO2U3","BI",70.00,LocalDate.now(),"https://elearning.vanlanguni.edu.vn/","id_category");
-//////        update Product
-////        Product updateProduct = updateProduct(listProduct,chao,"PRO2U3","BI",70.00,LocalDate.now(),"https://elearning.vanlanguni.edu.vn/","id_category");
-//////        delete Product
-////        Product deleteProduct = deleteProduct(listProduct,newProduct);
-//////        view Product
-////        List<Product> viewProduct = viewProduct(listProduct);
-//
-//
+
 ////        create bill
 //
 //        Bill newBill = createBill(listBill,id_bill,"Linh",order2,orderItems,90.0,9.0,payment);
@@ -267,25 +270,33 @@ public class Main {
         listCategory.add(category);
         return category;
     }
-    public static Category updateCategory(List<Category> listCategory,Category category ,String id, String name, String quality) {
-        for (Category i : listCategory) {
-            if ( i == category ) {
-                i.setId(id);
-                i.setName(name);
-                i.setQuality(quality);
-                return i;
+    public static Category findCategoryById(List<Category> listCategory, String categoryId) {
+        for (Category category : listCategory) {
+            if (category.getId().equals(categoryId)) {
+                return category;
             }
         }
         return null;
     }
-    public static Category deleteCategory(List<Category> listCategory,Category category) {
-        for (Category i : listCategory) {
-            if ( i == category ) {
-                listCategory.remove(i);
-                return i;
-            }
+    public static Category updateCategory(List<Category> listCategory,String categoryId , String name, String quality) {
+        Category categoryToUpdate = findCategoryById(listCategory, categoryId);
+
+        if (categoryToUpdate != null) {
+            categoryToUpdate.setName(name);
+            categoryToUpdate.setQuality(quality);
+            return categoryToUpdate;
         }
         return null;
+    }
+    public static Category deleteCategory(List<Category> listCategory, String categoryId) {
+        Category categoryToDelete = findCategoryById(listCategory, categoryId);
+
+        if (categoryToDelete != null) {
+            listCategory.remove(categoryToDelete);
+            return categoryToDelete;
+        }
+
+        return null;  // Category not found
     }
     public static List<Category> viewCategory(List<Category> listCategory) {
         return listCategory;
@@ -294,63 +305,114 @@ public class Main {
 
 //    ----------------------------------------------Poduct----------------------------------------
 
-    public static Product createProduct(List<Product> listProduct,String id, String name, Double price,LocalDate expiration,String image,String categoryId) {
+    public static Product createProduct(List<Product> listProduct,String productId, String name, Double price,String image,String categoryId) {
         Product product = new Product();
-        product.setId(id);
+        product.setId(productId);
         product.setName(name);
         product.setPrice(price);
-        product.setExpiration(expiration);
+        product.setExpiration(LocalDate.now());
         product.setImage(image);
         product.setCategoryId(categoryId);
         listProduct.add(product);
         return product;
     }
-    public static Product updateProduct(List<Product> listProduct,Product product,String id, String name, Double price,LocalDate expiration,String image,String categoryId) {
-        for (Product i : listProduct) {
-            if ( i == product ) {
-                i.setId(id);
-                i.setName(name);
-                i.setPrice(price);
-                i.setExpiration(expiration);
-                i.setImage(image);
-                i.setCategoryId(categoryId);
-                return i;
+    public static Product findProductById(List<Product> listProduct, String ProductId) {
+        for (Product product : listProduct) {
+            if (product.getId().equals(ProductId)) {
+                return product;
             }
         }
         return null;
     }
-    public static Product deleteProduct(List<Product> listProduct,Product product) {
-        for (Product i : listProduct) {
-            if ( i == product ) {
-                listProduct.remove(i);
+    public static Product updateProduct(List<Product> listProduct,String productId, String name, Double price,String image,String categoryId) {
+        Product prosductToUpdate = findProductById(listProduct,productId);
 
-            }
+        if (prosductToUpdate != null) {
+            prosductToUpdate.setId(productId);
+            prosductToUpdate.setName(name);
+            prosductToUpdate.setPrice(price);
+            prosductToUpdate.setExpiration(LocalDate.now());
+            prosductToUpdate.setImage(image);
+            prosductToUpdate.setCategoryId(categoryId);
+            return prosductToUpdate;
         }
+        return null;
+    }
+    public static Product deleteProduct(List<Product> listProduct,String productId) {
+        Product productToDelete = findProductById(listProduct, productId);
+
+        if (productToDelete != null) {
+            listProduct.remove(productToDelete);
+            return productToDelete;
+        }
+
         return null;
     }
     public static List<Product> viewProduct(List<Product> listProduct) {
         return listProduct;
     }
 
-//    ----------------------------------------------------Orderbill-------------------------------------------
 
-    public static Bill createBill(List<Bill> listBill,String id,String customerName,OrderItem order,List<OrderItem> orderItems ,Double totalAmount,Double promotionPrice,String payment) {
+//    ------------------------------------------------------Order-------------------------------------------------
+    public static OrderItem createOrderItem(List<Product> listProduct,List<OrderItem> listOrderItems,String productId,String quality) {
+        for ( Product product : listProduct) {
+            if (product.id.equals(productId)) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.setProductId(productId);
+                orderItem.setQuality(quality);
+                listOrderItems.add(orderItem);
+                return orderItem;
+            }
+        }
+        return null;
+    }
+    public static List<OrderItem> viewOderItem(List<OrderItem> listOrderItems) {
+        return listOrderItems;
+    }
+//    ----------------------------------------------------Orderbill-------------------------------------------
+    public static Double totalAmount(List<Product> listProduct, List<OrderItem> listOrderItems) {
+        Double totalAmount = 0.00;
+        for( OrderItem orderItem : listOrderItems) {
+            for (Product product : listProduct ){
+                if (orderItem.productId.equals(product.id)) {
+                    totalAmount += product.getPrice();
+                }
+            }
+        }
+        return totalAmount;
+    }
+    public static Bill createBill(List<Bill> listBill,List<Product> listProduct,String id,String customerName,List<OrderItem> listOrderItems) {
         Bill bill = new Bill();
         bill.setId(id);
         bill.setCustomerName(customerName);
-        orderItems.add(order);
-        bill.setOrderItems(orderItems);
-        bill.setPromotionPrice(promotionPrice);
+        bill.setOrderItems(listOrderItems);
+        Double totalAmount = totalAmount(listProduct,listOrderItems);
         bill.setTotalAmount(totalAmount);
+
+        Scanner myObj = new Scanner(System.in);
+        Double promotionPrice;
+        System.out.println("Enter promotion price: ");
+        promotionPrice = myObj.nextDouble();
+
+        bill.setPromotionPrice(promotionPrice);
         bill.setTotalBill(promotionPrice,totalAmount);
         bill.setTime(getTime());
+        Scanner myObj1 = new Scanner(System.in);
+        String payment;
+        System.out.println("Bill");
+        System.out.println("1.Create  2.View ");
+        System.out.println("Enter your type payment: ");
+        payment = myObj1.nextLine();
         if (checkPayment(payment)) {
             bill.setPayment(payment);
         }
-        listBill.add(bill);
+        listBill.add(bill);    
         return bill;
     }
     public static List<Bill> viewBill(List<Bill> listBill){
         return listBill;
     }
+
+
+
 }
