@@ -28,7 +28,7 @@ public class Main {
             Scanner myObj = new Scanner(System.in);
             String choiceModel;
             System.out.println("Menu");
-            System.out.println("1.Category  2.Product  3.OrderItems   4.Bill ");
+            System.out.println("1.Category  2.Product  3.OrderItems   4.Bill   out");
             System.out.println("Enter your choice menu: ");
             choiceModel = myObj.nextLine();
 
@@ -85,14 +85,7 @@ public class Main {
                 }
             }
 
-//        Product com = new Product();
-//        com.setId(id_product);
-//        com.setName("suon");
-//        com.setPrice(35.000);
-//        com.setImage("https://w3school.com");
-//        com.setExpiration(LocalDate.now());
-//        com.setCategoryId(gao.getId());
-//        System.out.println(com.toString());
+
             if (choiceModel.equals("2")) {
                 while (true) {
                     String prefix = "PRO";
@@ -193,36 +186,6 @@ public class Main {
                 break;
             };
         }
-
-
-
-
-
-//        Bill bill = new Bill();
-//        bill.setId(id_bill);
-//        bill.setCustomerName("Hiep");
-//
-//        String timeNow = getTime();
-//        bill.setTime(timeNow);
-//
-
-//
-//        bill.setOrderItems(orderItems);
-//        bill.setTotalAmount(55.0);
-//        bill.setPromotionPrice(5.0);
-//        Double total = bill.getTotalAmount() - bill.getPromotionPrice();
-//        bill.setTotalBill(bill.getTotalAmount(),bill.getPromotionPrice());
-//        String payment = inputpayment();
-//        if (checkPayment(payment)) {
-//            bill.setPayment(payment);
-//        }
-//
-////        System.out.println(bill.toString());
-
-////        create bill
-//
-//        Bill newBill = createBill(listBill,id_bill,"Linh",order2,orderItems,90.0,9.0,payment);
-//        System.out.println(listBill);
     }
 
 
