@@ -61,7 +61,7 @@ public class Main {
 
 //    --------------------------------------SERVICE--------------------------------------
 
-//    ----------------------------------------Category---------------------------------------------
+    //    ----------------------------------------Category---------------------------------------------
     public static Boolean category(List<Category> listCategory){
         while (true) {
             String prefix_category = "CAT";
@@ -154,7 +154,7 @@ public class Main {
         return listCategory;
     }
 
-//    ----------------------------------------------Product----------------------------------------
+    //    ----------------------------------------------Product----------------------------------------
     public static Boolean product(List<Product> listProduct, List<Category> listCategory) {
         while (true) {
             String prefix = "PRO";
@@ -171,7 +171,6 @@ public class Main {
                 System.out.println("Enter Category ID: ");
                 String choiceCategoryId = scanner.next();
                 Category category = findCategoryById(listCategory, choiceCategoryId);
-
                 System.out.println("Enter name product: ");
                 String  nameProduct = scanner.next();
                 System.out.println("Enter price product: ");
@@ -270,7 +269,7 @@ public class Main {
     public static List<Product> viewProduct(List<Product> listProduct) {
         return listProduct;
     }
-//    -----------------------------------------------------Order-----------------------------------------------------
+    //    -----------------------------------------------------Order-----------------------------------------------------
     public static Boolean orderItem(List<Product> listProduct, List<OrderItem> listOrderItems) {
         while (true) {
             System.out.println("order");
@@ -280,7 +279,7 @@ public class Main {
             if (choiceOrder.equals("1")) {
                 System.out.println("Enter ID Product: ");
                 String id_product = scanner.next();
-                Product product = findProductById(listProduct,id_product);
+                Product product = findProductById(listProduct, id_product);
                 if (product != null) {
                     System.out.println("Enter quantity order: ");
                     Integer quantityOrder = scanner.nextInt();
@@ -312,7 +311,7 @@ public class Main {
     public static List<OrderItem> viewOderItem(List<OrderItem> listOrderItems) {
         return listOrderItems;
     }
-//    ----------------------------------------------------bill-------------------------------------------
+    //    ----------------------------------------------------bill-------------------------------------------
     public static Boolean bill(List<Bill> listBill, List<Product> listProduct, List<OrderItem> listOrderItems) {
         while (true) {
             String prefix = "BIL";
@@ -351,7 +350,7 @@ public class Main {
         return totalAmount;
     }
     public static Bill createBill(List<Bill> listBill, List<Product> listProduct, String id, String customerName, List<OrderItem> listOrderItems) {
-        Bill bill = new Bill();]
+        Bill bill = new Bill();
         System.out.println("Enter promotion price: ");
         Double promotionPrice = checkDouble();
         bill.setId(id);
@@ -371,10 +370,8 @@ public class Main {
     }
     public static List<Bill> viewBill(List<Bill> listBill){
         return listBill;
-
-
     }
-//    -------------------------------------------------Common------------------------------------------
+    //    -------------------------------------------------Common------------------------------------------
     private static String getTime() {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("dd-MM-yyy // HH:mm:ss");
@@ -389,13 +386,11 @@ public class Main {
     private static boolean checkPayment(String payment) {
         return payment.equals("COD") || payment.equals("MOMO") || payment.equals("ZaloPay");
     }
-
     private static char generateRandomDigit() {
         Random random = new Random();
         int digit = random.nextInt(10);
         return (char) (digit + '0');
     }
-
     private static char generateRandomUppercaseLetter() {
         Random random = new Random();
         int letter = random.nextInt(26);
