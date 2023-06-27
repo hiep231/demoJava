@@ -2,7 +2,7 @@ package groceryStore.model;
 
 public class OrderItem {
     String productId;
-    String quality;
+    Integer quantity;
 
     public OrderItem() {
     }
@@ -15,19 +15,19 @@ public class OrderItem {
         this.productId = productId;
     }
 
-    public String getQuality() {
-        return quality;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuality(String quality) {
-        this.quality = quality;
+    public void setQuantity(Integer quality) {
+        this.quantity = quality;
     }
 
     @Override
     public String toString() {
         return "OrderItem{" +
                 "productId='" + productId + '\'' +
-                ", quality='" + quality + '\'' +
+                ", quality='" + quantity + '\'' +
                 '}';
     }
 }

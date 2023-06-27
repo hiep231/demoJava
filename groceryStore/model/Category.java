@@ -3,15 +3,15 @@ package groceryStore.model;
 public class Category {
     String id;
     String name;
-    String quality;
+    Integer quantity;
 
     public Category() {
     }
 
-    public Category(String id, String name, String quality) {
+    public Category(String id, String name, Integer quality) {
         this.id = id;
         this.name = name;
-        this.quality = quality;
+        this.quantity = quality;
     }
 
     public String getId() {
@@ -30,12 +30,12 @@ public class Category {
         this.name = name;
     }
 
-    public String getQuality() {
-        return quality;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuality(String quality) {
-        this.quality = quality;
+    public void setQuantity(Integer quality) {
+        this.quantity = quality;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Category {
         return "Category{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", quality='" + quality + '\'' +
+                ", quality='" + quantity + '\'' +
                 '}';
     }
 }
