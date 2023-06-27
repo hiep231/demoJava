@@ -33,7 +33,6 @@ public class Main {
             choiceModel = myObj.nextLine();
 
             if (choiceModel.equals("1")) {
-
                 while (true) {
                     String prefix_category = "CAT";
                     char digit1 = generateRandomDigit();
@@ -204,11 +203,7 @@ public class Main {
         return payment;
     };
     private static Boolean checkPayment(String payment) {
-        if (payment.equals("COD") || payment.equals("MOMO") || payment.equals("ZaloPay")) {
-            return true;
-        } else {
-            return false;
-        }
+        return (payment.equals("COD") || payment.equals("MOMO") || payment.equals("ZaloPay"))
     }
 
     private static char generateRandomDigit() {
@@ -260,8 +255,7 @@ public class Main {
             listCategory.remove(categoryToDelete);
             return categoryToDelete;
         }
-
-        return null;  // Category not found
+        return null;
     }
     public static List<Category> viewCategory(List<Category> listCategory) {
         return listCategory;
@@ -270,7 +264,7 @@ public class Main {
 
 //    ----------------------------------------------Poduct----------------------------------------
 
-    public static Product createProduct(List<Product> listProduct,String productId, String name, Double price,String image,String categoryId) {
+    public static Product createProduct(List<Product> listProduct, String productId, String name, Double price,String image,String categoryId) {
         Product product = new Product();
         product.setId(productId);
         product.setName(name);
@@ -291,7 +285,6 @@ public class Main {
     }
     public static Product updateProduct(List<Product> listProduct,String productId, String name, Double price,String image,String categoryId) {
         Product prosductToUpdate = findProductById(listProduct,productId);
-
         if (prosductToUpdate != null) {
             prosductToUpdate.setId(productId);
             prosductToUpdate.setName(name);
@@ -310,7 +303,6 @@ public class Main {
             listProduct.remove(productToDelete);
             return productToDelete;
         }
-
         return null;
     }
     public static List<Product> viewProduct(List<Product> listProduct) {
@@ -348,17 +340,16 @@ public class Main {
     }
     public static Bill createBill(List<Bill> listBill,List<Product> listProduct,String id,String customerName,List<OrderItem> listOrderItems) {
         Bill bill = new Bill();
-        bill.setId(id);
-        bill.setCustomerName(customerName);
-        bill.setOrderItems(listOrderItems);
-        Double totalAmount = totalAmount(listProduct,listOrderItems);
-        bill.setTotalAmount(totalAmount);
-
         Scanner myObj = new Scanner(System.in);
         Double promotionPrice;
         System.out.println("Enter promotion price: ");
         promotionPrice = myObj.nextDouble();
 
+        bill.setId(id);
+        bill.setCustomerName(customerName);
+        bill.setOrderItems(listOrderItems);
+        Double totalAmount = totalAmount(listProduct,listOrderItems);
+        bill.setTotalAmount(totalAmount);
         bill.setPromotionPrice(promotionPrice);
         bill.setTotalBill(promotionPrice,totalAmount);
         bill.setTime(getTime());
@@ -376,10 +367,5 @@ public class Main {
     }
     public static List<Bill> viewBill(List<Bill> listBill){
         return listBill;
-
-        
     }
-
-
-
 }
