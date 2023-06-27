@@ -31,7 +31,6 @@ public class Main {
             System.out.println("1.Category  2.Product  3.OrderItems   4.Bill   out");
             System.out.println("Enter your choice menu: ");
             choiceModel = myObj.nextLine();
-
             if (choiceModel.equals("1")) {
                 while (true) {
                     String prefix_category = "CAT";
@@ -49,7 +48,8 @@ public class Main {
                     if (choiceCategory.equals("1")) {
                         Category category = createCategory(listCategory, id_category, "Lua Vang", "Trung binh");
                         System.out.println("Create done!!!");
-                    } else if (choiceCategory.equals("2")) {
+                    }
+                    if (choiceCategory.equals("2")) {
                         Scanner myObj2 = new Scanner(System.in);
                         System.out.println("Enter the category ID to update: ");
                         String categoryIdToUpdate = myObj2.nextLine();
