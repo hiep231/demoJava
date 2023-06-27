@@ -408,5 +408,4 @@ public class Main {
         }
         return priceProduct;
     }
-
 }
