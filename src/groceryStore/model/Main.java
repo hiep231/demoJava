@@ -79,7 +79,7 @@ public class Main {
                 String nameCategory =  scanner.next();
                 System.out.println("Enter quantity category: ");
                 Integer quantityCategory =  scanner.nextInt();
-                Category category = createCategory(listCategory, id_category, nameCategory, quantityCategory);
+                Category create = createCategory(listCategory, id_category, nameCategory, quantityCategory);
                 System.out.println("Create done!!!");
                 continue;
             }
@@ -177,7 +177,7 @@ public class Main {
                 Double  priceProduct = checkDouble();
                 System.out.println("Enter link image product: ");
                 String  linkProduct = scanner.next();
-                Product product = createProduct(listProduct, id_product, nameProduct, priceProduct, linkProduct, category.getId());
+                Product create = createProduct(listProduct, id_product, nameProduct, priceProduct, linkProduct, category.getId());
                 System.out.println("Create done!!!");
                 continue;
             }
@@ -196,7 +196,7 @@ public class Main {
                         Double  priceProduct = checkDouble();
                         System.out.println("Enter link image product: ");
                         String  linkProduct = scanner.next();
-                        Product updateProduct = updateProduct(listProduct, productToUpdate.getId(), nameProduct, priceProduct, linkProduct, categoryToUpdate.getId());
+                        Product update = updateProduct(listProduct, productToUpdate.getId(), nameProduct, priceProduct, linkProduct, categoryToUpdate.getId());
                         System.out.println("Update done!!!");
                         continue;
                     }
@@ -211,7 +211,7 @@ public class Main {
                 String choiceProductId = scanner.next();
                 Product productToDelete = findProductById(listProduct, choiceProductId);
                 if (productToDelete != null){
-                    Product deleteProduct = deleteProduct(listProduct, choiceProductId);
+                    Product delete = deleteProduct(listProduct, choiceProductId);
                     System.out.println("Delete done!!!");
                     continue;
                 }
@@ -283,7 +283,7 @@ public class Main {
                 if (product != null) {
                     System.out.println("Enter quantity order: ");
                     Integer quantityOrder = scanner.nextInt();
-                    OrderItem orderItem = createOrderItem(listProduct, listOrderItems, id_product, quantityOrder);
+                    OrderItem create = createOrderItem(listProduct, listOrderItems, id_product, quantityOrder);
                     System.out.println("Create orderItem done!!!");
                     continue;
                 }
@@ -326,7 +326,7 @@ public class Main {
             if (choiceBill.equals("1")) {
                 System.out.println("Enter customer name: ");
                 String customerName = scanner.next();
-                Bill newBill = createBill(listBill, listProduct, id_bill, customerName, listOrderItems);
+                Bill create = createBill(listBill, listProduct, id_bill, customerName, listOrderItems);
                 System.out.println("Create bill done!!!");
                 continue;
             }
@@ -384,7 +384,7 @@ public class Main {
         return payment;
     }
     private static boolean checkPayment(String payment) {
-        return payment.equals("COD") || payment.equals("MOMO") || payment.equals("ZaloPay");
+        return payment.equals("cod") || payment.equals("momo") || payment.equals("zalopay");
     }
     private static char generateRandomDigit() {
         Random random = new Random();
@@ -406,10 +406,6 @@ public class Main {
                 scanner.next();
             }
         }
-        priceProduct +=1;
         return priceProduct;
     }
-
-
-
 }
