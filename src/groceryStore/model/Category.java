@@ -1,9 +1,9 @@
 package groceryStore.model;
 
 public class Category {
-    String id;
-    String name;
-    Integer quantity;
+    private String id;
+    private String name;
+    private Integer quantity;
 
     public Category() {
     }

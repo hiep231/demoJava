@@ -1,8 +1,8 @@
 package groceryStore.model;
 
 public class OrderItem {
-    String productId;
-    Integer quantity;
+    private String productId;
+    private Integer quantity;
 
     public OrderItem() {
     }
