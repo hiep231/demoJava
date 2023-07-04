@@ -5,6 +5,10 @@ import demo_oop_02.service.FacebookVN;
 import demo_oop_03.AccountModel;
 import demo_oop_03.UserModel;
 
+import javax.management.InstanceNotFoundException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,13 +41,34 @@ public class Main {
 //        FacebookUSA facebookUSA = new FacebookUSA();
 //        facebookUSA.run();
 //        facebookUSA.stop();
-        AccountModel accountHiep = new AccountModel();
-        accountHiep.setUsername("Do Tuan Hiep");
-        accountHiep.setPassword("125641");
 
-        UserModel hiep = new UserModel();
-        hiep.setName("Tuan Hiep");
-        hiep.setAccountModel(accountHiep);
-        System.out.println(hiep);
+
+//        AccountModel accountHiep = new AccountModel();
+//        accountHiep.setUsername("Do Tuan Hiep");
+//        accountHiep.setPassword("125641");
+//
+//        UserModel hiep = new UserModel();
+//        hiep.setName("Tuan Hiep");
+//        hiep.setAccountModel(accountHiep);
+//        System.out.println(hiep);
+
+        System.out.println("Nhập vào chuỗi thứ nhất:");
+        String chuoi1 = scanner.nextLine();
+        return chuoi1 = "haha";
+
+//        scanner.close();
+    }
+    static Scanner scanner = new Scanner(System.in);
+    public static Integer checkInteger() {
+        while (true) {
+            try {
+                String input = scanner.nextLine();
+                Integer aInteger = Integer.parseInt(input);
+                return aInteger;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+                scanner.next();
+            }
+        }
     }
 }

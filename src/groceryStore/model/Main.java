@@ -1,17 +1,12 @@
 package groceryStore.model;
-
 import groceryStore.service.*;
-
 import java.time.LocalDate;
 import java.util.*;
-
 public class Main {
-    static Common common = new Common();
+    static Common   common = new Common();
     static CategoryService categoryService = new CategoryService();
     static ProductService productService = new ProductService();
-    static OrderItemService orderItemService = new OrderItemService();
     static BillService billService = new BillService();
-
     static List<Product> listProduct = new ArrayList<>();
     static List<Category> listCategory = new ArrayList<>();
     static List<Bill> listBill = new ArrayList<>();
@@ -28,8 +23,9 @@ public class Main {
         listProduct.add(p2);
 
         while (true) {
+            System.out.println("------------------------------------");
             System.out.println("Menu");
-            System.out.println("1.Category  2.Product  3.OrderItems   4.Bill   5.out");
+            System.out.println("1.Category  2.Product  3.Bill  4.Out");
             System.out.println("Enter your choice menu: ");
             String choiceModel = common.scanner.next();
             if (choiceModel.equals("1")) {
@@ -45,18 +41,13 @@ public class Main {
                 }
             }
             if (choiceModel.equals("3")) {
-                Boolean exist = orderItemService.handleOrderItem(listProduct, listOrderItems);
+                Boolean exist = billService.handleBill(listProduct, listOrderItems, listBill);
                 if (exist) {
                     continue;
                 }
             }
             if (choiceModel.equals("4")) {
-                Boolean exist = billService.handleBill(listBill, listProduct, listOrderItems);
-                if (exist) {
-                    continue;
-                }
-            }
-            if (choiceModel.equals("5")) {
+                System.out.println("-------------End system-------------");
                 break;
             }
         }

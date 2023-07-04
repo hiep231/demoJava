@@ -1,5 +1,4 @@
 package groceryStore.model;
-
 public class Category {
     private String id;
     private String name;
@@ -43,7 +42,7 @@ public class Category {
         return "Category{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", quality='" + quantity + '\'' +
+                ", quantity='" + quantity + '\'' +
                 '}';
     }
 }

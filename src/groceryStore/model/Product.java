@@ -1,11 +1,7 @@
 package groceryStore.model;
-
-
 import java.time.LocalDate;
-
-
 public class Product {
-    public String id;
+    private String id;
     private String name;
     private Double price;
     private LocalDate expiration;

@@ -1,10 +1,6 @@
 package groceryStore.service;
-
-
 import groceryStore.model.Category;
 import java.util.List;
-
-
 interface CategoryServiceInterface {
     Boolean handleCategory(List<Category> listCategory);
     Category createCategory(List<Category> listCategory, String id, String name, Integer quantity);
@@ -12,43 +8,43 @@ interface CategoryServiceInterface {
     Category updateCategory(List<Category> listCategory, String categoryId , String name, Integer quantity);
     Category deleteCategory(List<Category> listCategory, String categoryId);
 }
-
 public class CategoryService implements CategoryServiceInterface {
     static Common common = new Common();
-    public Boolean handleCategory(List<Category> listCategory){
+    public Boolean handleCategory(List<Category> listCategory) {
         while (true) {
-            String prefix_category = "CAT";
-            char digit1 = common.generateRandomDigit();
-            char UpperLetter = common.generateRandomUppercaseLetter();
-            char digit2 = common.generateRandomDigit();
-            String id_category = prefix_category + digit1 + UpperLetter + digit2;
-            System.out.println("-----------------------------------------------------");
+            String prefix = "CAT";
+            String id_category = common.generateRandom(prefix);
+            System.out.println("-------------------------------------------");
             System.out.println("Category");
-            System.out.println("1.Create  2.Update  3.Delete  4.View  5.Out");
+            System.out.println("1.Create  2.Update  3.Delete  4.View  5.Exit");
             System.out.println("Enter your choice category: ");
             String choiceCategory =  common.scanner.next();
             if (choiceCategory.equals("1")) {
+                System.out.println("---------------");
                 System.out.println("Create category");
                 System.out.println("Enter name category: ");
-                String nameCategory =  common.scanner.next();
+                common.scanner.nextLine();  //create a blank line to enter the variable nameCategory
+                String nameCategory =  common.scanner.nextLine();
                 System.out.println("Enter quantity category: ");
-                Integer quantityCategory =  common.checkInterger();
+                Integer quantityCategory =  common.checkInteger();
                 Category create = createCategory(listCategory, id_category, nameCategory, quantityCategory);
-                if (create != null){
+                if (create == null){
                     System.out.println("Create done!!!");
                     continue;
                 }
             }
             if (choiceCategory.equals("2")) {
+                System.out.println("---------------");
                 System.out.println("Update category");
                 System.out.println("Enter category Id to update: ");
                 String categoryIdToUpdate = common.scanner.next();
                 Category categoryToUpdate = findCategoryById(listCategory, categoryIdToUpdate);
                 if (categoryToUpdate != null) {
+                    common.scanner.nextLine();
                     System.out.println("Enter name category update: ");
-                    String nameCategory =  common.scanner.next();
+                    String nameCategory =  common.scanner.nextLine();
                     System.out.println("Enter quantity category update: ");
-                    Integer quantityCategory =  common.checkInterger();
+                    Integer quantityCategory =  common.checkInteger();
                     Category update = updateCategory(listCategory, categoryIdToUpdate, nameCategory, quantityCategory);
                     if (update != null){
                         System.out.println("Update done!!!");
@@ -59,6 +55,7 @@ public class CategoryService implements CategoryServiceInterface {
                 continue;
             }
             if (choiceCategory.equals("3")) {
+                System.out.println("---------------");
                 System.out.println("Delete category");
                 System.out.println("Enter category Id to delete: ");
                 String categoryIdToDelete = common.scanner.next();
@@ -74,6 +71,7 @@ public class CategoryService implements CategoryServiceInterface {
                 continue;
             }
             if (choiceCategory.equals("4")) {
+                System.out.println("-------------");
                 System.out.println("View category");
                 System.out.println(listCategory);
                 continue;
@@ -85,10 +83,7 @@ public class CategoryService implements CategoryServiceInterface {
         return true;
     }
     public Category createCategory(List<Category> listCategory, String id, String name, Integer quantity) {
-        Category category = new Category();
-        category.setId(id);
-        category.setName(name);
-        category.setQuantity(quantity);
+        Category category = new Category(id, name, quantity);
         listCategory.add(category);
         return category;
     }

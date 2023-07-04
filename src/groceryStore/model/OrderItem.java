@@ -1,10 +1,14 @@
 package groceryStore.model;
-
 public class OrderItem {
     private String productId;
     private Integer quantity;
 
     public OrderItem() {
+    }
+
+    public OrderItem(String productId, Integer quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
     }
 
     public String getProductId() {

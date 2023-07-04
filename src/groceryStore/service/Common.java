@@ -1,22 +1,26 @@
 package groceryStore.service;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-
-interface commonInterface {
+interface CommonInterface {
     String getTime();
     String inputPayment();
     boolean checkPayment(String payment);
     char generateRandomDigit();
     char generateRandomUppercaseLetter();
     Double checkDouble();
-    Integer checkInterger();
+    Integer checkInteger();
 }
-public class Common implements commonInterface{
+public class Common implements CommonInterface {
     public static Scanner scanner = new Scanner(System.in);
+    public String generateRandom(String prefix) {
+        char digit1 = generateRandomDigit();
+        char UpperLetter = generateRandomUppercaseLetter();
+        char digit2 = generateRandomDigit();
+        return prefix + digit1 + UpperLetter + digit2;
+    }
     public String getTime() {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("dd-MM-yyy // HH:mm:ss");
@@ -51,11 +55,11 @@ public class Common implements commonInterface{
             }
         }
     }
-    public Integer checkInterger(){
+    public Integer checkInteger(){
         while (true) {
             try {
-                Integer aInterger = scanner.nextInt();
-                return aInterger;
+                Integer aInteger = scanner.nextInt();
+                return aInteger;
             } catch (InputMismatchException e) {
                 scanner.next();
             }

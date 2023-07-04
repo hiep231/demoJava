@@ -1,8 +1,5 @@
 package groceryStore.model;
-
-
 import java.util.List;
-
 public class Bill {
     private String id;
     private String customerName;
@@ -14,6 +11,17 @@ public class Bill {
     private String payment;
 
     public Bill() {
+    }
+
+    public Bill(String id, String customerName, List<OrderItem> orderItems, Double promotionPrice, Double totalAmount, String time, String payment) {
+        this.id = id;
+        this.customerName = customerName;
+        this.orderItems = orderItems;
+        this.promotionPrice = promotionPrice;
+        this.totalAmount = totalAmount;
+        this.totalBill = totalAmount - promotionPrice;
+        this.time = time;
+        this.payment = payment;
     }
 
     public String getId() {
@@ -44,9 +52,7 @@ public class Bill {
         return totalBill;
     }
 
-    public void setTotalBill(Double promotionPrice,Double totalAmount) {
-        this.totalBill = totalAmount - promotionPrice;
-    }
+    public void setTotalBill(Double totalBill) { this.totalBill = totalBill; }
 
     public Double getPromotionPrice() {
         return promotionPrice;
@@ -86,8 +92,8 @@ public class Bill {
                 "id='" + id + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", orderItems=" + orderItems +
-                ", promotionPrice=" + promotionPrice +
                 ", totalAmount=" + totalAmount +
+                ", promotionPrice=" + promotionPrice +
                 ", totalBill=" + totalBill +
                 ", time='" + time + '\'' +
                 ", payment='" + payment + '\'' +
