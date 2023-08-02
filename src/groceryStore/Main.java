@@ -1,4 +1,8 @@
-package groceryStore.model;
+package groceryStore;
+import groceryStore.model.Bill;
+import groceryStore.model.Category;
+import groceryStore.model.OrderItem;
+import groceryStore.model.Product;
 import groceryStore.service.*;
 import java.time.LocalDate;
 import java.util.*;

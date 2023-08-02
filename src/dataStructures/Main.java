@@ -47,10 +47,12 @@ public class Main {
 //        queue.enQueue(8);
 //        queue.deQueue();
 //        System.out.println(queue.show());
+
         MyLinkedList linkedList = new MyLinkedList();
         linkedList.add(5);
         linkedList.addHead(2);
         linkedList.addAfter(0,1);
+        linkedList.add(6);
 
         System.out.println(linkedList.show());
     }

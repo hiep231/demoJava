@@ -52,9 +52,9 @@ public class Main {
 //        hiep.setAccountModel(accountHiep);
 //        System.out.println(hiep);
 
-        System.out.println("Nhập vào chuỗi thứ nhất:");
-        String chuoi1 = scanner.nextLine();
-        return chuoi1 = "haha";
+//        System.out.println("Nhập vào chuỗi thứ nhất:");
+//        String chuoi1 = scanner.nextLine();
+//        return chuoi1 = "haha";
 
 //        scanner.close();
     }
